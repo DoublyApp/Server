@@ -1,18 +1,41 @@
-package root
+package main
 
 import (
 	"io"
 	"net/http"
-  "database/sql"
-	"mysql"
+	"database/sql"
+	"log"
+	"fmt"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func hello(w http.ResponseWriter, r *http.Request) {
 	io.WriteString(w, "Hello world!")
-  db, err := sql.Open(driver, dataSourceName)
+
+	db, err := sql.Open("mysql", "root:polkatis4foreverything@/Doubly")
   if err := db.Ping(); err != nil {
     log.Fatal(err)
   }
+	println(err)
+
+
+	age := 27
+	rows, err := db.Query("SELECT UserName FROM Users")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var name string
+		if err := rows.Scan(&name); err != nil {
+			log.Fatal(err)
+		}
+		fmt.Printf("%s is %d\n", name, age)
+		io.WriteString(w, name);
+	}
+	if err := rows.Err(); err != nil {
+		log.Fatal(err)
+	}
 
 }
 

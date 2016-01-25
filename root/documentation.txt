@@ -1,0 +1,4 @@
+systemctl start mariadb
+
+go to localhost:8000
+db management on localhost/phpmyadmin
