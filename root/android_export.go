@@ -11,7 +11,7 @@ import (
 func hello(w http.ResponseWriter, r *http.Request) {
 	io.WriteString(w, "Hello world!")
 
-	db, err := sql.Open("mysql", "root:polkatis4foreverything@/Doubly")
+	db, err := sql.Open("mysql", "doubly_user:db_user1@/Doubly")
   if err := db.Ping(); err != nil {
     log.Fatal(err)
   }
