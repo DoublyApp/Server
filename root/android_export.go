@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"database/sql"
 	"log"
-	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -18,7 +17,8 @@ func hello(w http.ResponseWriter, r *http.Request) {
   }
 	println(err)
 
-
+	io.WriteString(w, getUsers(w, r))
+/*
 	age := 27
 	rows, err := db.Query("SELECT UserName FROM Users")
 	if err != nil {
@@ -36,7 +36,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	if err := rows.Err(); err != nil {
 		log.Fatal(err)
 	}
-
+*/
 }
 
 var mux map[string]func(http.ResponseWriter, *http.Request)

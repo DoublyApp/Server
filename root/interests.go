@@ -1,5 +1,5 @@
-package root
+package main
 
 func getInterests(){
-  
+
 }
