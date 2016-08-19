@@ -1,4 +1,9 @@
 systemctl start mariadb
+username: doubly_user
+password: db_user1
 
 go to localhost:8000
 db management on localhost/phpmyadmin
+
+to execute:
+go run android_export.go format_response.go structs.go users.go

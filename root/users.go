@@ -5,30 +5,38 @@ import (
 	"net/http"
 	"database/sql"
 	"log"
+	"fmt"
+	"strconv"
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func getUsers(w http.ResponseWriter, r *http.Request) string {
+func GetUsers(w http.ResponseWriter, r *http.Request) string {
 	io.WriteString(w, "Hello world!")
 
-	db, err := sql.Open("mysql", "root:polkatis4foreverything@/Doubly")
-  if err := db.Ping(); err != nil {
-    log.Fatal(err)
+	db, err_open := sql.Open("mysql", "doubly_user:db_user1@/Doubly")
+  if err_open != nil {
+		log.Fatal(err_open)
   }
-	rows, err := db.Query("SELECT * FROM Users")
+	rows, _ := db.Query("SELECT * FROM Users")
 	defer rows.Close()
-  users ...User
+  var users []User
 	for rows.Next() {
-		var user User
-		if err := rows.Scan(&user); err != nil {
-			log.Fatal(err)
-		}
-		//fmt.Printf("%s is %d\n", user.UserName, age)
+		user := User{}
+		var userID, userName, email, password, dob, gender []byte
+		rows.Scan(&userID, &userName, &email, &password, &dob, &gender)
+		user.UserID, _ = strconv.Atoi(string(userID))
+		user.UserName = string(userName)
+		user.Email = string(email)
+		user.Password = string(password)
+		user.DOB = string(dob)
+		user.Gender = string(gender)
+		fmt.Printf("%s is %s\n", string(user.UserName), string(user.DOB))
 		//io.WriteString(w, user.UserName);
+		users = append(users, user)
 	}
-	if err := rows.Err(); err != nil {
-		log.Fatal(err)
-	}
+	//if err := rows.Err(); err != nil {
+	//	log.Fatal(err)
+	//}
 
-	return formatUsers(users)
+	return FormatUsers(users)
 }

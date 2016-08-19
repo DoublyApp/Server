@@ -5,20 +5,21 @@ import (
   "bytes"
 )
 
-func formatMessages(messages ...Message) string {
+func FormatMessages(messages ...Message) string {
   var buffer bytes.Buffer
   for _, message := range messages {
-    tmp, err := json.Marshal(message)
-    buffer.WriteString(tmp)
+    tmp, _ := json.Marshal(message)
+    buffer.WriteString(string(tmp))
   }
   return buffer.String()
 }
 
-func formatUsers(users ...User) string {
+func FormatUsers(users []User) string {
   var buffer bytes.Buffer
   for _, user := range users {
-    tmp, err := json.Marshal(user)
-    buffer.WriteString(tmp)
+    tmp, _ := json.Marshal(user)
+    buffer.WriteString(string(tmp))
   }
+
   return buffer.String()
 }

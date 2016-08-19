@@ -13,7 +13,7 @@ type User struct {
   UserName string
   Email string
   Password string
-  DOB float32
+  DOB string
   Gender string
 }
 
