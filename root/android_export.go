@@ -17,7 +17,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
   }
 	println(err)
 
-	io.WriteString(w, getUsers(w, r))
+//	io.WriteString(w, getUsers(w, r))
 /*
 	age := 27
 	rows, err := db.Query("SELECT UserName FROM Users")
