@@ -1,9 +1,9 @@
-systemctl start mariadb
-username: doubly_user
-password: db_user1
+Database Accessor
+username: doubly_app
+password: doubly_user1
 
-go to localhost:8000
-db management on localhost/phpmyadmin
+URL Test:
+http://ec2-52-42-244-41.us-west-2.compute.amazonaws.com/<enter HandleFunc here>
 
 to execute:
 go run android_export.go format_response.go structs.go users.go
