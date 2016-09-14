@@ -32,14 +32,7 @@ func GetUsersInterests(w http.ResponseWriter, r *http.Request) string {
                 log.Fatal(err_open)
         }
 	var rUserID = r.URL.Path[len("/get_users_interests/"):]
-        rows, err_query := db.Query("
-			SELECT 
-				Interests.InterestID, 
-				Interests.InterestName 
-			FROM UsersInterests 
-			INNER JOIN Users ON UsersInterests.UserID = Users.UserID 
-			INNER JOIN Interests ON UsersInterests.InterestID = Interests.InterestID
-			WHERE Users.UserID = " + rUserID)
+        rows, err_query := db.Query("SELECT Interests.InterestID, Interests.InterestName FROM UsersInterests INNER JOIN Users ON UsersInterests.UserID = Users.UserID INNER JOIN Interests ON UsersInterests.InterestID = Interests.InterestID WHERE Users.UserID = " + rUserID)
         if err_query != nil {
                 panic(err_query.Error())
         }
