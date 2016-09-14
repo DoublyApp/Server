@@ -1,0 +1,45 @@
+CREATE TABLE IF NOT EXISTS Interests (
+	InterestID INTEGER PRIMARY KEY AUTO_INCREMENT, 
+	InterestName TEXT
+);
+
+CREATE TABLE IF NOT EXISTS Users (
+	UserID INTEGER PRIMARY KEY AUTO_INCREMENT, 
+	UserName TEXT, 
+	Email TEXT, 
+	`Password` TEXT, 
+	DOB LONG, 
+	Gender TEXT
+);
+
+CREATE TABLE IF NOT EXISTS GPS (
+	UserID INTEGER, 
+	Latitude FLOAT, 
+	Longitude FLOAT,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+
+CREATE TABLE IF NOT EXISTS Messages (
+	MessageID INTEGER PRIMARY KEY AUTO_INCREMENT, 
+	SenderID INT, 
+	ReceiverID INT, 
+	MessageText TEXT, 
+	TimeCreated LONG,
+    FOREIGN KEY (SenderID) REFERENCES Users(UserID),
+    FOREIGN KEY (ReceiverID) REFERENCES Users(UserID)
+);
+
+CREATE TABLE IF NOT EXISTS UsersInterests (
+	UserID INT, 
+	InterestID INT,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+	FOREIGN KEY (InterestID) REFERENCES Interests(InterestID)
+);
+
+CREATE TABLE IF NOT EXISTS UsersContacts (
+	UserID INT, 
+	ContactID INT, 
+	ContactStatus TEXT,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (ContactID) REFERENCES Users(UserID)
+);

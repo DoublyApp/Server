@@ -1,0 +1,37 @@
+INSERT INTO Users
+(
+	UserName, 
+	Email, 
+	`Password`, 
+	DOB, 
+	Gender
+)
+VALUES
+(
+	"guy1",
+	"guy1@dude.com",
+    "123",
+    NULL,
+    "M"
+),
+(
+    "guy2",
+    "guy2@dude.com",
+    "234",
+    NULL,
+    "M"
+),
+(
+	"gal1",
+	"gal1@dude.com",
+    "345",
+	NULL,
+    "F"
+),
+(
+	"gal2",
+	"gal2@dude.com",
+    "456",
+    NULL,
+    "F"
+);

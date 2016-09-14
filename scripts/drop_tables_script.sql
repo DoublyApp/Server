@@ -1,0 +1,12 @@
+DELETE FROM GPS;
+DROP TABLE GPS;
+DELETE FROM Messages;
+DROP TABLE Messages;
+DELETE FROM UsersFriends;
+DROP TABLE UsersFriends;
+DELETE FROM UsersInterests;
+DROP TABLE UsersInterests;
+DELETE FROM Interests;
+DROP TABLE Interests;
+DELETE FROM Users;
+DROP TABLE Users;

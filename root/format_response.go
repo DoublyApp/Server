@@ -23,3 +23,12 @@ func FormatUsers(users []User) string {
 
   return buffer.String()
 }
+
+func FormatInterests(interests []Interest) string {
+	var buffer bytes.Buffer
+	for _, interest := range interests {
+		tmp, _ := json.Marshal(interest)
+		buffer.WriteString(string(tmp))
+	}
+	return buffer.String()
+}
