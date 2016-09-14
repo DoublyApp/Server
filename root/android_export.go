@@ -27,9 +27,16 @@ func get_interests(w http.ResponseWriter, r *http.Request){
 	mu.Unlock()
 }
 
+func get_users_interests(w http.ResponseWriter, r *http.Request){
+	mu.Lock()
+	fmt.Fprintf(w, GetUsersInterests(w, r))
+	mu.Unlock()
+}
+
 func main() {
 	http.HandleFunc("/get_users/", get_users)
 	http.HandleFunc("/get_user_by_id/", get_user_by_id)
 	http.HandleFunc("/get_interests/", get_interests)
+	http.HandleFunc("/get_users_interests/", get_users_interests)
 	log.Fatal(http.ListenAndServe(":80", nil))
 }
