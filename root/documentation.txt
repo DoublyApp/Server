@@ -6,7 +6,7 @@ URL Test:
 http://ec2-52-42-244-41.us-west-2.compute.amazonaws.com/<enter HandleFunc here>
 
 to execute:
-sudo go run android_export.go format_response.go structs.go users.go
+sudo go run android_export.go format_response.go structs.go users.go interests.go GPS.go
 
 MySQL Workbench connection:
 username: doubly_app
