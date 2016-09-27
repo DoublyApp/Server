@@ -5,7 +5,7 @@ type Message struct {
   SenderID int
   ReceiverID int
   MessageText int
-  TimeCreated int
+  TimeCreated string
 }
 
 type User struct {

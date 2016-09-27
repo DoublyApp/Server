@@ -67,14 +67,32 @@ func update_gps(w http.ResponseWriter, r *http.Request) {
 	mu.Unlock()
 }
 
+// messages.go
+// /insert_message/<senderID>/<receiverID>/<messageText>
+func insert_message(w http.ResponseWriter, r *http.Request) {
+	mu.Lock()
+	fmt.Fprintf(w, InsertMessage(w, r))
+	mu.Unlock()
+}
+
+// returns userID to client
+// /insert_user/<user name>/<email>/<password>/<DOB>/<gender>
+func insert_user(w http.ResponseWriter, r *http.Request) {
+	mu.Lock()
+	fmt.Fprintf(w, InsertUser(w, r))
+	mu.Unlock()
+}
+
 func main() {
 	http.HandleFunc("/get_users/", get_users)
 	http.HandleFunc("/get_user_by_id/", get_user_by_id)
+	http.HandleFunc("/insert_user/", insert_user)
 	http.HandleFunc("/get_interests/", get_interests)
 	http.HandleFunc("/get_users_interests/", get_users_interests)
 	http.HandleFunc("/insert_interest/", insert_interest)
 	http.HandleFunc("/remove_interest/", remove_interest)
 	http.HandleFunc("/get_interests_users/", get_interests_users)
 	http.HandleFunc("/update_gps/", update_gps)
+	http.HandleFunc("/insert_message/", insert_message)
 	log.Fatal(http.ListenAndServe(":80", nil))
 }
